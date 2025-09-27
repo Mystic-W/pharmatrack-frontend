@@ -1,10 +1,11 @@
+// src/pages/Product.tsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchProduct, checkDisponibilidad } from "../lib/api";
 import { Product } from "../types";
 import { shortDate } from "../utils/format";
 
-export default function Product() {
+export default function ProductPage() {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
   const [avail, setAvail] = useState<any[]>([]);
@@ -19,9 +20,9 @@ export default function Product() {
         const p = await fetchProduct(id);
         setProduct(p);
         const a = await checkDisponibilidad(id);
-        setAvail(a.results);
+        setAvail(a.results ?? a); // compatibilidad con distintos mocks
       } catch (e: any) {
-        setErr(e.message);
+        setErr(e.message ?? String(e));
       } finally {
         setLoading(false);
       }
