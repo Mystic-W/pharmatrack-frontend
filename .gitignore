@@ -1,0 +1,18 @@
+# dependencias
+node_modules/
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# build output
+dist/
+
+# env vars locales
+.env
+.env.local
+.env.*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
